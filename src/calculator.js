@@ -26,6 +26,25 @@ function divide(a, b) {
   return a / b;
 }
 
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error('modulo by zero');
+  }
+  return a % b;
+}
+
+function power(base, exponent) {
+  // Use Math.pow to handle fractional exponents reliably
+  return Math.pow(base, exponent);
+}
+
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error('square root of negative number');
+  }
+  return Math.sqrt(n);
+}
+
 function compute(a, operator, b) {
   const op = String(operator).toLowerCase();
   switch (op) {
@@ -44,6 +63,17 @@ function compute(a, operator, b) {
     case '÷':
     case 'div':
       return divide(a, b);
+    case '%':
+    case 'mod':
+      return modulo(a, b);
+    case '**':
+    case '^':
+    case 'pow':
+      return power(a, b);
+    case 'sqrt':
+    case '√':
+      // square root is unary: operate on the first argument
+      return squareRoot(a);
     default:
       throw new Error(`Unsupported operator: ${operator}`);
   }
@@ -54,6 +84,9 @@ module.exports = {
   subtract,
   multiply,
   divide,
+  modulo,
+  power,
+  squareRoot,
   compute,
 };
 
@@ -63,7 +96,7 @@ if (require.main === module) {
 
   function printUsage() {
     console.log('Usage: calc <number> <operator> <number>');
-    console.log('Operators: +, -, *, / (also: add, sub, mul, div)');
+    console.log('Operators: +, -, *, /, %, **, ^, sqrt (also: add, sub, mul, div, mod, pow)');
   }
 
   function parseNumber(s) {
