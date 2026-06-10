@@ -61,6 +61,21 @@ describe('Calculator basic operations', () => {
     expect(compute(9, '√')).toBe(3);
     expect(() => squareRoot(-1)).toThrow('square root of negative number');
   });
+
+  test('extended operations from image examples', () => {
+    // from image: modulo with 5 % 2
+    expect(modulo(5, 2)).toBe(1);
+    expect(compute(5, '%', 2)).toBe(1);
+
+    // power with 2 ^ 3
+    expect(power(2, 3)).toBe(8);
+    expect(compute(2, '^', 3)).toBe(8);
+
+    // square root with √16
+    expect(squareRoot(16)).toBe(4);
+    expect(compute(16, 'sqrt')).toBe(4);
+    expect(compute(16, '√')).toBe(4);
+  });
   test('negative numbers and mixed signs', () => {
     expect(add(-5, -3)).toBe(-8);
     expect(add(-5, 3)).toBe(-2);
